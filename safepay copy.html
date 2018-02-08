@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="//cdn.steemjs.com/lib/latest/steem.min.js"></script>
+</head>
+<body>
+    <table>
+        <tr><td /><td><h1>Steem SafePay</h1></td></tr>
+        <tr><td style="text-align:right">your Steem username: </td>
+            <td><input id="userName" type="text" /></td></tr>
+        <tr><td style="text-align:right">your *active* key: </td>
+            <td><input id="activeKey" type="password" style="width: 425px" /></td></tr>
+        <tr><td style="text-align:right">recipient username: </td>
+            <td><input id="toName" type="text" value="digital-wisdom" /></td></tr>
+        <tr><td style="text-align:right">amount:</td>
+            <td><input id="amount" type="text" value="1.000" /> (must have three decimal places, i.e. 1.000)</td></tr>
+        <tr><td style="text-align:right">units:</td>
+            <td><input id="units" type="text" value="SBD" /> (must be SBD or STEEM)</td></tr>
+        <tr><td style="text-align:right">memo: </td>
+            <td><input id="memo" type="text" value="Steem SafePay rocks!" style="width: 425px" /></td></tr>
+        <tr><td colspan="2" style="text-align:center"><input id="button1" onclick="fire();" type="button" value="Send!" /></td></tr>
+    </table>
+    <script>
+        fire = function() {
+        steem.transfer($("#activeKey").val(), [$("#userName").val()], [$("#toName").val()], 
+                            $("#amount").val() + " " + $("#units").val(), $("#memo").val(), function (err, result) {
+                if (err) alert("TRANSFER: error = " + JSON.stringify(err)); else alert("Payment sent!");
+            })
+        }
+    </script>
+</body>
+</html>

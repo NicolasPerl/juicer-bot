@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Steem.js</title>
+</head>
+<body>
+
+<script src="../dist/steem.min.js"></script>
+<script>
+steem.api.getConfig(function(err, response){
+  console.log(err, response);
+  console.log('getConfig');
+});
+steem.api.getAccounts(['ned', 'dan'], function(err, response){
+  console.log(err, response);
+  console.log('getAccounts');
+});
+steem.api.getAccountCount(function(err, response){
+  console.log(err, response);
+  console.log('getAccountCount');
+});
+/*
+steem.api.login('techchat', '', function(err, result) {
+  console.log(err, result);
+  console.log('cono');
+});
+*/
+steem.api.getFollowCount('techchat', function(err, result) {
+  console.log(err, result);
+  console.log('getFollowCount');
+});
+
+
+
+steem.api.lookupAccountNames('techchat', function(err, result) {
+  console.log(err, result);
+  console.log('lookupAccountNames');
+});
+/*
+var fire = steem.broadcast.transfer('', 'techchat', 'minnowbooster', '00.100 SBD', 'https://steemit.com/technology/@techchat/ymwdiie3', function(err, result) {
+  console.log(err, result);
+  console.log('Transfer');
+});
+*/
+var i = 1 
+
+function myLoopMB () {
+	setTimeout(function () {
+		steem.broadcast.transfer('', 'techchat', 'minnowbooster', '00.050 SBD', 'https://steemit.com/spacex/@techchat/spacex-s-falcon-heavy-is-your-ticket-to-mars', function(err, result) {
+  		console.log(err, result);
+ 		console.log('Transfer');
+});
+		i++;
+		if (i < 15) {
+			myLoopMB();
+		}
+
+	}, 6000)
+}
+
+myLoopMB();
+
+
+function myLoopSS () {
+	setTimeout(function () {
+		steem.broadcast.transfer('', 'techchat', 'smartmarket', '00.300 SBD', 'https://steemit.com/spacex/@techchat/spacex-s-falcon-heavy-is-your-ticket-to-mars', function(err, result) {
+  		console.log(err, result);
+ 		console.log('Transfer');
+});
+		i++;
+		if (i < 10) {
+			myLoopSS();
+		}
+
+	}, 7000)
+}
+
+//myLoopSS();
+myLoopMB();
+
+
+
+
+/* Original API
+steem.broadcast.transfer(wif, from, to, amount, memo, function(err, result) {
+  console.log(err, result);
+  console.log('Transfer');
+});
+*/
+</script>
+
+</body>
+</html>
