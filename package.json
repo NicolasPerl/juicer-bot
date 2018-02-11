@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "live-server": "^1.2.0",
-    "steem": "^0.7.1"
+    "steem": "^0.7.1",
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {},
   "scripts": {
