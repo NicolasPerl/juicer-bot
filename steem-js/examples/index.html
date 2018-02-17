@@ -9,16 +9,17 @@
 <script src="../dist/steem.min.js"></script>
 <script>
 
+// live-server to run
 
 //Memo URL to Upvote
-var memoURL = 'https://steemit.com/technology/@techchat/meet-dru-the-world-s-first-pizza-delivery-robot'
+var memoURL = 'https://steemit.com/technology/@techchat/the-first-robot-lawyer-ross-has-just-been-hired-by-the-firm-baker-and-hostetler'
 
 //Wif DELETE BEFORE PUSHING----------------------------------------
-var wif = '5JjQQTtYRPG4a3qZD7fFM5GgZk1q8M4mHyo6csjjtP2NBER8zxT'//--
+var wif = ''//--
 //-----------------------------------------------------------------
 
 //Minnow Booster
-var amountMB = '00.150 SBD'
+var amountMB = '00.100 SBD'
 // Smart Steem
 var amountSS = '01.000 SBD'
 
@@ -68,7 +69,7 @@ function myLoopMB () {
  		console.log('Transfer');
 });
 		i++;
-		if (i < 5) {
+		if (i < 30) {
 			myLoopMB();
 		}
 
