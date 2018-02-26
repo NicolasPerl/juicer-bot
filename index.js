@@ -33,7 +33,7 @@ function loop() {
 		}
 
 		account = result[0]; // set account
-		//console.log(account);
+		console.log(account);
 	});
 
 	if (account) {
@@ -160,6 +160,7 @@ function vote(vote, callback) {
 	});
 }
 // only test with bot account
+
 function refund(sender, amount,memoType) {
 	var message = config.memo_messages[memoType];
 	message = message.replace(/{sender}/g,sender);
@@ -174,7 +175,7 @@ function refund(sender, amount,memoType) {
 
 function saveState() {
 	var state = {
-		trans_number: trans_number;
+		trans_number: trans_number,
 	};
 
 	fs.writeFile('state.json',JSON.stringify(state),function (err) {
@@ -196,3 +197,4 @@ function sendComment(vote) {
         console.log('Error posting comment: ' + permlink + ', Error: ' + err);
       }
     });
+}
