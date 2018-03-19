@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "angular": "^1.6.9",
     "live-server": "^1.2.0",
     "package.json": "^2.0.1",
     "steem": "^0.7.1",
+    "steemconnect": "0.0.35",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {},

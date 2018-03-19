@@ -10,6 +10,10 @@
 
 <script src="../dist/steem.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.steemjs.com/lib/latest/steemconnect.min.js"></script>
+
+<script src="/scripts/sc2.min.js"></script>
+
 <script>
 //Memo URL to Upvote
 var memoURL = 'https://steemit.com/technology/@techchat/bmw-has-a-motorcycle-that-balances-itself'
@@ -28,13 +32,37 @@ var amountSS = '00.140 SBD'
 // set the counter
 var i = 1 
 
-var limit = 3
+var limit = 40
 var query = {
   tag: 'introduceyourself',
   limit: limit,
 };
+/*
+  steemconnect.init({
+    app: 'juicer.app',
+    callbackURL: 'http://127.0.0.1:8080'
+  });
 
+  var loginURL = steemconnect.getLoginURL();
 
+  steemconnect.isAuthenticated(function(err, result) {
+  console.log(err, result);
+});
+*/
+
+var api = sc2.Initialize({
+  app: 'juicer.app',
+  callbackURL: 'http://127.0.0.1:8080',
+  accessToken: 'access_token',
+  scope: ['vote', 'comment']
+});
+
+var link = api.getLoginURL(state);
+console.log(link)
+
+api.me(function (err, res) {
+  console.log(err, res)
+});
 
 
 steem.api.getConfig(function(err, response){
@@ -108,7 +136,7 @@ steem.api.getOwnerHistory('therealwolf', function(err, result) {
   console.log('getOwnerHistory');
 });
 
-steem.api.getAccountHistory(techchat, 30, limit, function(err, result) {
+steem.api.getAccountHistory('katrina90', 100, limit, function(err, result) {
   console.log(err, result);
   console.log('getAccountHistory');
 });
@@ -118,12 +146,18 @@ steem.api.lookupAccountNames(['techchat'], function(err, result) {
 });
 
 
+
 steem.api.getAccounts(['katrina90'], function(err, result) {
   console.log(err, result);
   console.log('getAccounts');
   var tags = result["0"].tags_usage;
   console.log('tags',tags);
 
+});
+
+steem.api.getTagsUsedByAuthor('techchat', function(err, result) {
+  console.log(err, result);
+  console.log('getTagsUsedByAuthor');
 });
 
 var repeat_list = [];

@@ -6,9 +6,10 @@
   <title>Juicer</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="#">
+  
 </head>
 <body>
-
+<script src="/node_modules/angular/angular.js"></script>
 <script src="/steem-js/dist/steem.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="/Scripts/comments.js"></script>
@@ -18,7 +19,7 @@
 //------------------
 //myLoopSS();
 //myLoopMB();
-//loopComment();
+loopComment();
 
 //setInterval(fire(),21000);
 //------------------
@@ -48,7 +49,24 @@
   </div>
 </nav>
 
+<!--
+<table>
+        <tr><td /><td><h1>Comment</h1></td></tr>
+        <tr><td style="text-align:right">your Steem username: </td>
+            <td><input id="userName" type="text" /></td></tr>
+        <tr><td style="text-align:right">your wif: </td>
+            <td><input id="activeKey" type="password" style="width: 425px" /></td></tr>
+        <tr><td style="text-align:right">What tag do you want to focus on?: </td>
+            <td><input id="toName" type="text" value="" /></td></tr>
+        <tr><td style="text-align:right">Activity Speed?</td>
+            <td><input id="amount" type="text" value="1.000" /> (must have three decimal places, i.e. 1.000)</td></tr>
+        <tr><td colspan="2" style="text-align:center"><input id="button1" onclick="fire();" type="button" value="Send!" /></td></tr>
+    </table>
 
+-->
+<a [href]="url">Log in to steemconnect</a>
+
+<pre [innerHTML]="message"></pre>
 
 
 
