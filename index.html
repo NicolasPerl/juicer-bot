@@ -62,6 +62,20 @@
     <p>Find the code of this demo on GitHub: <a href="https://github.com/steemit/example-steemconnect-angular">https://github.com/steemit/example-steemconnect-angular</a></p>
   </div>
 
+   <h3>Configure Bot</h3>
+    <form ng-show="isAuth()" ng-submit="comment()">
+        What should I say?<br>
+        <input type="text" name="content" ng-model="content"><br>
+        How many times should I run?<br>
+        <input type="radio" ng-model="limit.runTime" ng-value="7">All the time
+        <input type="radio" ng-model="limit.runTime" ng-value="3">Medium
+        <input type="radio" ng-model="limit.runTime" ng-value="2">Slow
+        <span class="input-group-btn">  
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </span>
+        {{ limit.runTime }}
+    </form>
+
   <hr />
   <div>
     <h3>Login & logout</h3>
