@@ -1,9 +1,19 @@
+//var sc2 = require('sc2-sdk');
+
+
 sc2.init({
   app: 'juicer.app',
-  callbackURL: 'http://127.0.0.1:8080',
+  callbackURL: 'http://127.0.0.1:8080/Views/comments.html',
   scope: ['vote', 'comment']
 });
-
+/*
+var sc2 = sc2.Initialize({
+  app: 'busy',
+  callbackURL: 'http://127.0.0.1:8080',
+  accessToken: 'access_token',
+  scope: ['vote', 'comment']
+});
+*/
 // oauth2 url
 //https://v2.steemconnect.com/oauth2/authorize?client_id=juicer.app&redirect_uri=http%3A%2F%2F127.0.0.1%3A8080&scope=vote,comment
 

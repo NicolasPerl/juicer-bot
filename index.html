@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
-  <title>Demo</title>
+  <title>Juicer Dev</title>
   <base href="/" />
   <meta charset="UTF-8">
   <meta id="viewport" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
@@ -11,6 +11,7 @@
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
   <script src="/Scripts/sc2.min.js"></script>
+  <!--<script src="/Scripts/sc2.js"></script>-->
   <script src="//cdn.steemjs.com/lib/latest/steem.min.js"></script>
   <script src="/Scripts/app.js"></script>
   <style>
@@ -56,26 +57,28 @@
 </nav>
 
 <div class="container py-5" style="max-width: 600px;" ng-controller="Main as main">
-  <div class="mb-4">
-    <h1>Demo</h1>
-    <p>This is a demo using <a href="https://github.com/steemit/sc2-sdk">SteemConnect 2 SDK</a>. You can login, logout, comment and upvote.</p>
-    <p>Find the code of this demo on GitHub: <a href="https://github.com/steemit/example-steemconnect-angular">https://github.com/steemit/example-steemconnect-angular</a></p>
-  </div>
-
+<!--
    <h3>Configure Bot</h3>
     <form ng-show="isAuth()" ng-submit="comment()">
-        What should I say?<br>
-        <input type="text" name="content" ng-model="content"><br>
-        How many times should I run?<br>
+        What should I say?
+        <br>
+        <br>
+        <input type="text" name="content" ng-model="content"><br><br>
+        How many times should I run?
+        <br>
+        <br>
+
         <input type="radio" ng-model="limit.runTime" ng-value="7">All the time
         <input type="radio" ng-model="limit.runTime" ng-value="3">Medium
         <input type="radio" ng-model="limit.runTime" ng-value="2">Slow
+        <br>
+        <br>
         <span class="input-group-btn">  
           <button class="btn btn-primary" type="submit">Submit</button>
         </span>
         {{ limit.runTime }}
     </form>
-
+-->
   <hr />
   <div>
     <h3>Login & logout</h3>
