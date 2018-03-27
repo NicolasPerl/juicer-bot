@@ -64,11 +64,14 @@
         What should I say?<br>
         <input type="text" name="content" ng-model="content"><br>
         How many times should I run?<br>
-        <input type="radio" ng-model="limit.runTime" ng-value="4">All the time
-        <input type="radio" ng-model="limit.runTime" ng-value="3">Medium
-        <input type="radio" ng-model="limit.runTime" ng-value="2">Slow
+        <input type="radio" ng-model="limit.runTime" ng-value="31">All the time
+        <input type="radio" ng-model="limit.runTime" ng-value="21">Medium
+        <input type="radio" ng-model="limit.runTime" ng-value="11">Slow<br>
+        <!--
+        What tag do you want to focus on<br>
+        <input type="text" name="tags" ng-model="tags"><br>-->
         <span class="input-group-btn">  
-          <button class="btn btn-primary" type="submit" ng-click="comment()">Submit</button>
+          <button class="btn btn-primary" type="submit">Submit</button>
         </span>
         {{ limit.runTime }}
     </form>
@@ -87,7 +90,7 @@
     </button>
     <a class="btn btn-primary" ng-href="{{loginURL}}" ng-hide="isAuth()">Log In</a>
   </div>
-
+<!--
   <hr />
   <h3>Comment & vote</h3>
   <div class="input-group input-group-lg">
@@ -124,7 +127,7 @@
     </div>
     <pre class="mt-4">{{metadata}}</pre>
   </form>
-
+-->
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

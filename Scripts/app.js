@@ -36,6 +36,8 @@ angular.module('app', [])
       runTime: '4'
     };
 
+
+
     var limit = 7;
     var query = {
       tag: 'introduceyourself',
@@ -119,6 +121,7 @@ angular.module('app', [])
               //$scope.content = '';
               //$scope.loading = false;
               //$scope.$apply();
+              console.log('tags:', $scope.tags);
             });
           }
           i++;
