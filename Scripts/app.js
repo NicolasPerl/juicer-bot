@@ -32,19 +32,28 @@ angular.module('app', [])
     //set the counter 
     var i = 1
 
-    $scope.limit = {
-      runTime: '4'
-    };
+    
 
+    $scope.getVal=function(){
+        console.log($scope.limit);
+        $scope.limit = $scope.limit_model;
+        console.log('scope_model: ',$scope.limit_model);
+        window.limit = $scope.limit
+        console.log('limit Inside getval(): ', limit);
+    }
 
+    $scope.getTag=function() {
+      console.log('$scope.tag.tag_model: ', $scope.tag_model);
+      $scope.tag = $scope.tag_model;
+      window.tag = $scope.tag
+      console.log('tag: ', tag);
+      window.query = {
+        tag: tag,
+        limit: limit
+      };
 
-    var limit = 7;
-    var query = {
-      tag: 'introduceyourself',
-      limit: limit
-    };
-    console.log('scope.limit',$scope.limit);
-
+    }
+    
     if ($scope.accessToken) {
       sc2.setAccessToken($scope.accessToken);
       sc2.me(function (err, result) {
@@ -69,7 +78,7 @@ angular.module('app', [])
         }
       });
     };
-/*
+/* old comment function
     var repeat_list = [];
     $scope.comment = function() {
       console.log("repeat_list: ", repeat_list);
@@ -90,6 +99,8 @@ angular.module('app', [])
       $scope.loading= true;
       console.log("repeat_list: ", repeat_list);
       steem.api.getDiscussionsByCreated(query, function(err, result) {
+        console.log('getDiscussionsByCreated: ',result);
+        console.log('query Inside getDiscussionsByCreated: ', query);
         setTimeout(function () {
           var permlinkSlug = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
           var discussion = result[i];
@@ -115,13 +126,13 @@ angular.module('app', [])
               permlinkSlug, 
               '',
               $scope.content,
-              { tags: ['introduceyourself'] },
+              { tags: [tag] },
               function(err, result) {
               console.log(err, result);
               //$scope.content = '';
               //$scope.loading = false;
               //$scope.$apply();
-              console.log('tags:', $scope.tags);
+              //console.log('tags:', $scope.tags);
             });
           }
           i++;
