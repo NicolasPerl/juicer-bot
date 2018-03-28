@@ -14,13 +14,13 @@ var i = 1
 //template to post
 template ='![steemitComment.png](https://steemitimages.com/DQmTz3Tp8ueysinU65zbUG91RserdhYUwuFmhdr77GjijH1/steemitComment.png) <br> We are excited to see you join us here! Steemit is a remarkable platform that is built to reward users for creating quality content. Its a logic called *proof of brain*. <br><br>As for TechChat, think of us as DJs that create tech content instead of music. We create content by looking for the most shocking, interesting, and exciting breakthroughs in the tech space. Basically - we do all the research so you dont have to.<br><br>We hope to hear your opinion on TechChat’s content! We always love to hear from our community. <br><br>Happy Steeming 🚀'
 
-
+/*
 var limit = 31
 var query = {
   tag: 'introduceyourself',
   limit: limit,
 };
-
+*/
 
 
 var repeat_list = [];

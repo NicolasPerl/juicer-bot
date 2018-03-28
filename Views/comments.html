@@ -62,18 +62,21 @@
     <h3>Configure Bot</h3>
     <form ng-show="isAuth()" ng-submit="comment()">
         What should I say?<br>
-        <input type="text" name="content" ng-model="content"><br>
+        <input type="text" name="content" ng-model="content"><br><br>
         How many times should I run?<br>
-        <input type="radio" ng-model="limit.runTime" ng-value="31">All the time
-        <input type="radio" ng-model="limit.runTime" ng-value="21">Medium
-        <input type="radio" ng-model="limit.runTime" ng-value="11">Slow<br>
-        <!--
+        <input type="radio" ng-model="limit_model" ng-value="31" ng-click="getVal()">All the time
+        <input type="radio" ng-model="limit_model" ng-value="21" ng-click="getVal()">Medium
+        <input type="radio" ng-model="limit_model" ng-value="5" ng-click="getVal()">Slow<br><br>
+        
         What tag do you want to focus on<br>
-        <input type="text" name="tags" ng-model="tags"><br>-->
+        <input type="text" name="tag" ng-model="tag_model" />
+        <button ng-click="getTag()">Save</button><br>
+
+        <br>
         <span class="input-group-btn">  
-          <button class="btn btn-primary" type="submit">Submit</button>
+          <button class="btn btn-primary" type="submit" ng-submit="getTag()">Submit</button>
         </span>
-        {{ limit.runTime }}
+        {{ limit_model }}
     </form>
 
 
