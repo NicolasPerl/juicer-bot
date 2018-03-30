@@ -6,20 +6,20 @@
   <meta charset="UTF-8">
   <meta id="viewport" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="//at.alicdn.com/t/font_ykgtxz90gjve7b9.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+
   <script src="/Scripts/sc2.min.js"></script>
   <!--<script src="/Scripts/sc2.js"></script>-->
   <script src="//cdn.steemjs.com/lib/latest/steem.min.js"></script>
   <script src="/Scripts/app.js"></script>
   <link rel="stylesheet" type="text/css" href="/Styles/index.css">
-  <style>
-    hr { margin: 40px 0; }
-    h3 { margin-bottom: 20px; }
-  </style>
 </head>
 
 <body>
@@ -33,11 +33,18 @@
 
 //setInterval(fire(),21000);
 //------------------
+
+
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+
+
 </script>
 
-<!-- Join waitlist - Universal nav bar -->
+<!--  Universal nav bar -->
 <nav class="navbar navbar-expand-md navbar-dark myNav">
-  <div class="container-fluid">
+  <div class="container-fluid" ng-controller="Main as main">
 
     <!-- logo -->
     <a class="navbar-logo" href="index.html">
@@ -48,7 +55,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="Views/comments.html">Comment Bot</a>
+          <a class="nav-link" href="./Views/comments.html">Comment Bot</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Sell Votes</a>
@@ -62,8 +69,34 @@
       </ul>
     </div>
 
-    <!-- Join waitlist button -->
-    <button type="button" class="btn navbar-btn joinNavBtn">Join Waitlist</button>
+    <!-- Login button -->
+    <a class="btn navbar-btn joinNavBtn" ng-href="{{loginURL}}" ng-hide="isAuth()">Log In</a>
+
+    <!-- Logout button -->
+    <div class="dropdown">
+      <a ng-show="isAuth()" class="dropdown-toggle user-name" data-toggle="dropdown" boundary='viewport'><img src="//img.busy.org/@{{user.name}}?s=32" width="32" height="32"> {{user.name}}</a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="min-width: 8rem;">
+
+        <a ng-show="isAuth()" class="dropdown-item" ng-href="./Views/profile.html" >
+        Profile
+        </a>
+
+        <div class="dropdown-divider"></div>
+        
+        <a ng-show="isAuth()" class="dropdown-item" ng-href="http://127.0.0.1:8080" ng-click="logout()">
+        Logout
+        </a>
+
+
+      </div>
+    </div>
+  
+    
+
+    <!-- <button ng-show="isAuth()" class="ml-2 btn btn-secondary" type="submit" ng-click="logout()">
+      Logout
+    </button> -->
 
     <!-- hamburger icon when nav bar is collapsed -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -259,7 +292,11 @@
   </div>
 </footer>
 
-<div class="container py-5" style="max-width: 600px;" ng-controller="Main as main">
+
+
+
+
+<!-- <div class="container py-5" style="max-width: 600px;" ng-controller="Main as main"> -->
 <!--
    <h3>Configure Bot</h3>
     <form ng-show="isAuth()" ng-submit="comment()">
@@ -282,7 +319,7 @@
         {{ limit.runTime }}
     </form>
 -->
-  <hr />
+  <!-- <hr />
   <div>
     <h3>Login & logout</h3>
     <b ng-show="isAuth()"><img src="//img.busy.org/@{{user.name}}?s=32" width="32" height="32"> @{{user.name}}</b>
@@ -329,10 +366,7 @@
     <pre class="mt-4">{{metadata}}</pre>
   </form>
 
-</div>
+</div> -->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

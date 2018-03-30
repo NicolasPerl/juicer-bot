@@ -5,7 +5,7 @@ body {
 
 
 
-/* ****** Join Waitlist Universal Nav bar ****** */
+/* ****** Universal Nav bar ****** */
 .myNav {
   background-color: #28292B;
   color: lightgray;
@@ -35,6 +35,25 @@ body {
   background: #28292B;
   color: white;
 }
+
+.dropdown {
+  margin-right: 0px;
+  color: lightgray;
+}
+
+.dropdown:hover {
+  color: white;
+  cursor: pointer;
+}
+
+
+.dropdown-menu > a:hover {
+    background-color: white;
+    background-image: none;
+    cursor: pointer;
+    color: gray;
+}
+
 
 
 /* ****** header Section  ****** */
@@ -349,7 +368,6 @@ body {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  border-bottom: 1px solid lightgray;
   padding-bottom: 20px;
 }
 
@@ -399,59 +417,6 @@ body {
 
 
 
-
-
-.sell-votes {
-  height: 460px;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  border-bottom: 1px solid lightgray;
-  padding-bottom: 20px;
-}
-
-.sell-votes .description {
-  text-align: center;
-}
-
-.sell-votes .header {
-  font-size: calc(15px + 1vw);
-  text-decoration: underline;
-  text-decoration-color: #EF8133;
-  text-decoration-style: solid;
-  -webkit-text-decoration: underline;
- -webkit-text-decoration-color: #EF8133;
- -webkit-text-decoration-style: solid;
-  margin-bottom: calc(15px + 1vw);
-}
-
-.sell-votes .details {
-  max-width: 300px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: calc(15px + 1vw);
-}
-
-.sell-votes button {
-  border: 1px solid #EF8133;
-  background: white;
-  color: black;
-}
-
-.sell-votes button:hover {
-  border: 1px solid #EF8133;
-  color: black;
-  font-weight: 500;
-}
-
-
-.sell-votes img {
-  width: 30vw;
-  max-width: 250px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 
 
