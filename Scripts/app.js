@@ -32,6 +32,11 @@ angular.module('app', [])
     //set the counter 
     var i = 1
 
+    interval = function () {
+      var myVar = setInterval(function(){  $scope.comment() }, 22000);
+      //setInterval(() => $scope.comment, 22000);
+      console.log('myvar: ', myVar);
+    }
     
 
     $scope.getVal=function(){
@@ -51,7 +56,7 @@ angular.module('app', [])
         tag: tag,
         limit: limit
       };
-
+      interval();
     }
     
     if ($scope.accessToken) {
@@ -92,56 +97,51 @@ angular.module('app', [])
         $scope.loadComments();
       });
     };
+
 */
+
+
+
     var repeat_list = [];
+    console.log('repeat_list: ',repeat_list);
     /* auto comment*/
     $scope.comment= function() {
       $scope.loading= true;
-      console.log("repeat_list: ", repeat_list);
       steem.api.getDiscussionsByCreated(query, function(err, result) {
         console.log('getDiscussionsByCreated: ',result);
         console.log('query Inside getDiscussionsByCreated: ', query);
-        setTimeout(function () {
-          var permlinkSlug = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
-          var discussion = result[i];
-          //console.log(i, discussion);
-          var user_id = discussion.id;
-          var flag = $.inArray(user_id, repeat_list); //check if user_id is already in array
-          if (flag === -1) {
-            repeat_list.push(user_id);
-            console.log("inside inarray",repeat_list);
-            window.permlink = discussion.permlink;
-            window.author = discussion.author;
-            /*
-            console.log(author, 'author');
-            console.log('permlink',permlink);
-            console.log('permlinkSlug',permlinkSlug);
-            console.log('$scope.content', $scope.content);
-            */
-            /* broadcast comment*/
-            sc2.comment(
-              author,//$scope.parentAuthor is what is was before 
-              permlink, //$scope.parentPermlink  21000
-              $scope.user.name, 
-              permlinkSlug, 
-              '',
-              $scope.content,
-              { tags: [tag] },
-              function(err, result) {
-              console.log(err, result);
-              //$scope.content = '';
-              //$scope.loading = false;
-              //$scope.$apply();
-              //console.log('tags:', $scope.tags);
-            });
-          }
-          i++;
-          if (i < limit) {
-            $scope.comment();
-          }
-        }, 21000)
+        var permlinkSlug = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
+        var discussion = result[i];
+        //console.log(i, discussion);
+        var user_id = discussion.id;
+        var flag = $.inArray(user_id, repeat_list); //check if user_id is already in array
+        if (flag === -1) {
+          repeat_list.push(user_id);
+          console.log("inside inarray",repeat_list);
+          window.permlink = discussion.permlink;
+          window.author = discussion.author;
+          /* broadcast comment*/
+          sc2.comment(
+            author,//$scope.parentAuthor is what is was before 
+            permlink, //$scope.parentPermlink  21000
+            $scope.user.name, 
+            permlinkSlug, 
+            '',
+            $scope.content,
+            { tags: [tag] },
+            function(err, result) {
+            console.log(err, result);
+            //$scope.$apply();
+            //console.log('tags:', $scope.tags);
+          });
+        }
       }); 
     }
+
+    
+    // after 1 week stop
+    //setTimeout(() => { clearInterval(timerId); alert('stop'); },  604800000);
+
 
     $scope.vote = function(author, permlink, weight) {
       sc2.vote($scope.user.name, author, permlink, weight, function (err, result) {
