@@ -60,7 +60,7 @@
 
   <div>
     <h3>Configure Bot</h3>
-    <form ng-show="isAuth()" ng-submit="comment()">
+    <form ng-show="isAuth()" ng-submit="fire()">
         What should I say?<br>
         <input type="text" name="content" ng-model="content"><br><br>
         How many times should I run?<br>
@@ -70,11 +70,11 @@
         
         What tag do you want to focus on<br>
         <input type="text" name="tag" ng-model="tag_model" />
-        <button ng-click="getTag()">Save</button><br>
+        <!--<button ng-click="getTag()">Save</button><br>-->
 
         <br>
         <span class="input-group-btn">  
-          <button class="btn btn-primary" type="submit" ng-submit="getTag()">Submit</button>
+          <button class="btn btn-primary" type="submit" ng-submit="fire()">Submit</button>
         </span>
         {{ limit_model }}
     </form>
@@ -93,6 +93,15 @@
     </button>
     <a class="btn btn-primary" ng-href="{{loginURL}}" ng-hide="isAuth()">Log In</a>
   </div>
+
+  <ul class="list-group my-4" ng-init="loadComments()">
+    <li class="list-group-item" ng-repeat="comment in comments">
+      @{{comment.author}}: {{comment.body}}
+      <button ng-show="isAuth()" class="ml-2 btn btn-secondary btn-sm" type="submit" ng-click="vote(comment.author, comment.permlink, 1000)">
+        <i class="icon iconfont icon-praise"></i> {{comment.net_votes}}
+      </button>
+    </li>
+  </ul>
 <!--
   <hr />
   <h3>Comment & vote</h3>
