@@ -103,25 +103,31 @@ angular.module('app', [])
   function commentCheck(result) {
     steem.api.getContentReplies(author, permlink, function(err, result) {
         if (!err) {
+          commentGate = true;
           j = 0
+          var user = $scope.user.name;
           $scope.$apply();
           console.log('inside getContentReplies--------------------------------');
           console.log('j: ',j);
           console.log('result in comment check: ',result);        
           var checkID = result[j];
-          if (checkID != null) {
-            console.log("result.length: ",result.length);
+          console.log("checkID outside: ", checkID);
+          if (checkID != null) {            
+
+            console.log("result.length: ",);
             for (j = 0; j < result.length; j++) { 
+                checkID = result[j];
+                console.log("checkID inside for: ", checkID);
                 console.log("inside checkID/for loop");
+                console.log('j inside for loop: ',j);
                 //console.log(j,checkID[0]);
                 var replyAuthor = checkID.author;//.id
                 console.log('replyAuthor: ', replyAuthor);
-                console.log('$scope.user: ', $scope.user);
-                var user = $scope.user.name;
                 console.log('user: ',user);
                 //if replyAuthor matches with $user change commentGate() flag
                 if (replyAuthor == user) {
                   commentGate = false;
+                  console.log('if replyAuthor == user:----------------------- ',);
                 }
             }
           }
