@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
   <title>Comment</title>
@@ -110,18 +110,18 @@
   </div>
 
   <div class="my-form-style">
-    <form ng-show="isAuth()" ng-submit="comment()" class="comment-form">
+    <form ng-show="isAuth()" ng-submit="fire()" class="comment-form">
         <legend><span class="number">1</span> What message would you like to comment? </legend>
         <textarea name="content" rows="5" ng-model="content"></textarea>
 
         <legend><span class="number">2</span> What tag do you want to target? </legend>
         <div class="input-group">
           <input type="text" class="form-control" name="tag" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" ng-model="tag_model">
-          <span class="input-group-append">
+          <!--<span class="input-group-append">
             <button class="btn btn-outline-secondary save-tag-btn" ng-click="getTag()" type="button">Save</button>
-          </span>
+          </span>-->
         </div>
-        <!-- <button ng-click="getTag()">Save</button> -->
+         
 
       
 
@@ -154,8 +154,10 @@
        
         <span class="input-group-btn">
         <div class="text-center"> 
-          <button class="btn submitBtn" type="submit" ng-submit="getTag()">Submit</button>
+          <button class="btn submitBtn" type="submit" ng-submit="fire()">Submit</button>
         </div> 
+
+        
         </span>
         <!-- {{ limit_model }} -->
     </form>
