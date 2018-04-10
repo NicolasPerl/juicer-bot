@@ -81,8 +81,8 @@ angular.module('app', [])
             window.discussion = result[i];
             console.log(i, discussion);
             window.user_id = discussion.id;
-            window.bodyText = discussion.body;
-            console.log('bodyText: ', bodyText.length);
+            //window.bodyText = discussion.body;
+            //console.log('bodyText: ', bodyText.length);
 
             window.flag = $.inArray(user_id, repeat_list); //check if user_id is already in array
     
