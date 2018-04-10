@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  
+  <title>Sell Votes</title>
+
+  <base href="/" />
+  <meta charset="UTF-8">
+  <meta id="viewport" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_ykgtxz90gjve7b9.css">
+
+  <link rel="stylesheet" type="text/css" href="../Styles/sell-votes.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="/Scripts/sc2.min.js"></script>
+  <script src="//cdn.steemjs.com/lib/latest/steem.min.js"></script>
+  <script src="/Scripts/app.js"></script>
+
+</head>
+<body>
+
+
+<script>
+
+ $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+
+</script>
+
+
+<!-- Join waitlist - Universal nav bar -->
+<nav class="navbar navbar-expand-md navbar-dark myNav">
+  <div class="container-fluid" ng-controller="Main as main">
+
+    <!-- logo -->
+    <a class="navbar-logo" href="../index.html">
+      <img src="../media/orange.png" height="50" alt="Juicer Logo">
+    </a>
+
+    <!-- Collapseable section of navbar -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="./Views/comments.html">Comment Bot</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sell Votes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./Views/buy-votes.html">Buy Votes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./Views/faq.html">FAQ</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Login button -->
+    <a class="btn navbar-btn joinNavBtn" ng-href="{{loginURL}}" ng-hide="isAuth()">Log In</a>
+
+
+    <div class="dropdown">
+      <a ng-show="isAuth()" class="dropdown-toggle user-name" data-toggle="dropdown" boundary='viewport'><img src="//img.busy.org/@{{user.name}}?s=32" width="32" height="32"> {{user.name}}</a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="min-width: 8rem;">
+
+        <a ng-show="isAuth()" class="dropdown-item" ng-href="./Views/profile.html" >
+        Profile
+        </a>
+
+        <div class="dropdown-divider"></div>
+        
+         <!-- Logout button -->
+        <a ng-show="isAuth()" class="dropdown-item" ng-href="http://127.0.0.1:8080" ng-click="logout()">
+        Logout
+        </a>
+
+
+      </div>
+    </div>
+
+    <!-- hamburger icon when nav bar is collapsed -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  </div>
+</nav>
+
+
+
+<div class="container-fluid">
+
+  <h1 class="header">Sell Votes</h1>
+
+  <div class="description">
+    <p>Describe that users can sell their upvotes and earn passive income</p>
+    <hr />
+  </div>
+
+  <div class="settings row">
+    <h4 class="vote-selling-label">Sell your vote:</h4>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="sliderToggle round"></span>
+      </label>
+  </div>
+
+
+
+  
+  <form class="sell-form">
+    <div class="vote-power-threshold">
+      <div class="row">
+        <div class="col-sm-8">
+          <h4>Voting Power Threshold</h4>
+          <i><p>Vote only if your voting power is higher than:</p></i>
+        </div>
+        <div class="col-sm-4">
+          <h2 id="vote-power-text">0 <span>%</span></h2>
+        </div>
+      </div>
+      <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="80" class="slider" id="myRange">
+      </div>
+    </div>
+
+    <span class="input-group-btn">
+      <div class="text-center"> 
+        <button class="btn submitBtn" type="submit" id="submitBtn">Save</button>
+      </div> 
+    </span>
+
+  </form>
+
+
+</div>
+
+<script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("vote-power-text");  
+    console.log(slider)
+
+    output.innerHTML = slider.value + " %";
+    
+
+    slider.oninput = function() {
+      output.innerHTML = this.value + " %";
+    } 
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
+

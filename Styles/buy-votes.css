@@ -1,0 +1,213 @@
+body {
+  background: white;
+  color: #28292B;
+}
+
+
+
+/* ****** Join Waitlist Universal Nav bar ****** */
+.myNav {
+  background-color: #28292B;
+  color: lightgray;
+}
+
+#navbarNav li {
+  margin-right: 20px;
+  min-width: 120px;
+}
+
+#navbarNav a {
+  color: lightgray;
+}
+
+#navbarNav a:hover {
+  color: white;
+}
+
+.joinNavBtn {
+  border: 1px solid #EF8133;
+  background: #28292B;
+  color: lightgray;
+}
+
+.joinNavBtn:hover {
+  border: 1px solid #EF8133;
+  background: #28292B;
+  color: white;
+}
+
+
+
+
+
+
+
+
+/********* page body *********/
+
+
+h1 {
+  text-align: center;
+  margin-top: 75px;
+
+  text-decoration: underline;
+ text-decoration-color: #EF8133;
+ text-decoration-style: solid;
+ -webkit-text-decoration: underline;
+ -webkit-text-decoration-color: #EF8133;
+ -webkit-text-decoration-style: solid;
+}
+
+.description {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+.vote-values {
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  /*border: 1px solid black;*/
+}
+
+hr {
+  max-width: 600px;
+}
+
+
+.my-form-style {
+    padding: 0px;
+    margin: 10px auto;
+    border-radius: 8px;
+    max-width: 600px;
+    /*font-family: Georgia, "Times New Roman", Times, serif; */
+}
+
+
+
+.my-form-style legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  margin-top: 100px;
+}
+
+.my-form-style legend:first-of-type {
+  margin-top: 0px;
+}
+
+.my-form-style .number {
+    background: #EF8133;
+    color: white;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-right: 4px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    border-radius: 15px 15px 15px 0px;
+}
+
+.my-form-style textarea {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 0;
+    outline: 0;
+    padding: 7px;
+    width: 100%;
+    box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    background-color: #e8eeef;
+    color:black;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 0px;
+}
+
+.my-form-style input[type="text"],
+.my-form-style input[type="number"],
+select {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 0;
+    outline: 0;
+    padding: 4px;
+    box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    background-color: #e8eeef;
+    color:black;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 0px;
+    margin-right: 1px;
+}
+
+select {
+  height: 32px;
+  width: 95%;
+}
+
+.my-form-style input[type="text"]:focus,
+.my-form-style input[type="number"]:focus,
+.my-form-style textarea:focus {
+  background: #d2d9dd;
+}
+
+
+.pay {
+  margin-bottom: 20px;
+}
+
+/*hr {
+  background-color: orange;
+}*/
+
+.row {
+  margin-bottom: 0px;
+  /*border: 1px solid black;*/
+}
+
+
+
+.curation, .vote-value {
+  text-align: center;
+}
+
+.error {
+  /*border: 1px solid black;*/
+  max-height: 60px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;  
+}
+
+
+
+.submitBtn {
+  border: 1px solid #EF8133;
+  background-color: #f4f7f8;
+  min-width: 200px;
+  color: gray;
+}
+
+.submitBtn:hover {
+  background-color: #e0e8eb;
+  color: black;
+}
