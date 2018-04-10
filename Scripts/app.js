@@ -85,17 +85,13 @@ angular.module('app', [])
     
             if (flag === -1) {//
               repeat_list.push(user_id);
-              console.log('---------------inside inarray---------------',repeat_list);
               window.permlink = discussion.permlink;
               window.author = discussion.author;
-              console.log('author inside(): ', window.author);
               commentCheck(result);
             }
-            console.log('interval has been called: ', user_id);
             i++;
             if (i == stopAfter) {
               console.log("startInterval has been called !!!!!!!!!!!!!!!----------------");
-              
             }
             if (i < stopAfter) {
               inside();
@@ -113,9 +109,8 @@ angular.module('app', [])
           j = 0
           var user = $scope.user.name;
           $scope.$apply();
-          console.log('inside getContentReplies--------------------------------');
-          
-          console.log('result in comment check: ',result);        
+          console.log('inside api.getContentReplies()--------------------------------');
+          console.log('result in commentCheck(): ',result);        
           var checkID = result[j];
           
           if (checkID != null) {            
@@ -123,13 +118,12 @@ angular.module('app', [])
             console.log("result.length: ",);
             for (j = 0; j < result.length; j++) { 
                 checkID = result[j];
-                console.log("checkID inside for: ", checkID);
                 console.log('j inside for loop: ',j);
                 var replyAuthor = checkID.author;//.id
-                //if replyAuthor matches with $user change commentGate() flag
+                //if replyAuthor matches with $user change commentGate flag
                 if (replyAuthor == user) {
                   commentGate = false;
-                  console.log('if replyAuthor == user:----------------------- ',);
+                  console.log('if replyAuthor == user:----------------------- commentGate switched',);
                 }
             }
           }
@@ -168,22 +162,6 @@ angular.module('app', [])
         }
       });
     };
-/* old comment function
-    var repeat_list = [];
-    $scope.comment = function() {
-      console.log("repeat_list: ", repeat_list);
-      $scope.loading = true;
-      var permlink = steem.formatter.commentPermlink($scope.parentAuthor, $scope.parentPermlink);
-      sc2.comment($scope.parentAuthor, $scope.parentPermlink, $scope.user.name, permlink, '', $scope.message, '', function(err, result) {
-        console.log(err, result);
-        $scope.content = '';
-        $scope.loading = false;
-        $scope.$apply();
-        $scope.loadComments();
-      });
-    };
-
-*/ 
   
     console.log('repeat_list: ',repeat_list);
     /* auto comment*/
