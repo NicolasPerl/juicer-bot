@@ -6,16 +6,6 @@ sc2.init({
   callbackURL: 'http://127.0.0.1:8080/Views/comments.html',
   scope: ['vote', 'comment']
 });
-/*
-var sc2 = sc2.Initialize({
-  app: 'busy',
-  callbackURL: 'http://127.0.0.1:8080',
-  accessToken: 'access_token',
-  scope: ['vote', 'comment']
-});
-*/
-// oauth2 url
-//https://v2.steemconnect.com/oauth2/authorize?client_id=juicer.app&redirect_uri=http%3A%2F%2F127.0.0.1%3A8080&scope=vote,comment
 
 angular.module('app', [])
   .config(['$locationProvider', function($locationProvider){
@@ -30,20 +20,28 @@ angular.module('app', [])
     $scope.loginURL = sc2.getLoginURL();
 
     //set the counter 
-    var i = 1
+    var i = 0
+    var j = 0
+    var repeat_list = [];
+    var startTime = new Date().getTime();
+    
+    var commentGate = true;
 
+    startInterval = function () {
+      if (new Date().getTime() - startTime < 172800000) {//2 days
+        console.log('inside startInterval() if statement: !!!!!!!!!!!!!!!!!!!!!!!!!')
+        var myVar = setInterval(function(){  fetchPosts() }, 300000);//22000   604800000 1 week
+      }
+    }
     
 
     $scope.getVal=function(){
-        console.log($scope.limit);
-        $scope.limit = $scope.limit_model;
-        console.log('scope_model: ',$scope.limit_model);
-        window.limit = $scope.limit
-        console.log('limit Inside getval(): ', limit);
+      $scope.limit = $scope.limit_model;
+      window.limit = $scope.limit
     }
-
+/*
     $scope.getTag=function() {
-      console.log('$scope.tag.tag_model: ', $scope.tag_model);
+      //console.log('$scope.tag.tag_model: ', $scope.tag_model);
       $scope.tag = $scope.tag_model;
       window.tag = $scope.tag
       console.log('tag: ', tag);
@@ -51,9 +49,93 @@ angular.module('app', [])
         tag: tag,
         limit: limit
       };
-
+      
     }
+  */  
+
+  //triggered after user hits submit button
+    $scope.fire=function() {
+      $scope.loading= true;
+      $scope.tag = $scope.tag_model;
+        window.tag = $scope.tag
+        console.log('tag: ', tag);
+        window.query = {
+          tag: tag,
+          limit: limit
+        };
+        fetchPosts();
+    }
+
+
+    //grab new posts from blockchain
+    function fetchPosts() {
+      steem.api.getDiscussionsByCreated(query, function(err, result) {
+        console.log('getDiscussionsByCreated: ',result);
+        window.stopAfter = result.length;
+
+        //itertate through result 
+        function inside() {
+          setTimeout(function () {
+            console.log('---------------inside set timeout: --------------');
+            window.permlinkSlug = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
+            window.discussion = result[i];
+            console.log(i, discussion);
+            window.user_id = discussion.id;
+            window.flag = $.inArray(user_id, repeat_list); //check if user_id is already in array
     
+            if (flag === -1) {//
+              repeat_list.push(user_id);
+              window.permlink = discussion.permlink;
+              window.author = discussion.author;
+              commentCheck(result);
+            }
+            i++;
+            if (i == stopAfter) {
+              console.log("startInterval has been called !!!!!!!!!!!!!!!----------------");
+            }
+            if (i < stopAfter) {
+              inside();
+            }
+          }, 25000)
+        }
+        inside();
+      });
+    }
+
+  function commentCheck(result) {
+    steem.api.getContentReplies(author, permlink, function(err, result) {
+        if (!err) {
+          commentGate = true;
+          j = 0
+          var user = $scope.user.name;
+          $scope.$apply();
+          console.log('inside api.getContentReplies()--------------------------------');
+          console.log('result in commentCheck(): ',result);        
+          var checkID = result[j];
+          
+          if (checkID != null) {            
+
+            console.log("result.length: ",);
+            for (j = 0; j < result.length; j++) { 
+                checkID = result[j];
+                console.log('j inside for loop: ',j);
+                var replyAuthor = checkID.author;//.id
+                //if replyAuthor matches with $user change commentGate flag
+                if (replyAuthor == user) {
+                  commentGate = false;
+                  console.log('if replyAuthor == user:----------------------- commentGate switched',);
+                }
+            }
+          }
+          if (commentGate) {
+            console.log('inside commentGate: ');
+            $scope.comment();
+          }
+        }
+      });
+  }
+
+
     if ($scope.accessToken) {
       sc2.setAccessToken($scope.accessToken);
       sc2.me(function (err, result) {
@@ -62,6 +144,7 @@ angular.module('app', [])
           $scope.user = result.account;
           $scope.metadata = JSON.stringify(result.user_metadata, null, 2);
           $scope.$apply();
+          
         }
       });
     }
@@ -71,77 +154,40 @@ angular.module('app', [])
     };
 
     $scope.loadComments = function() {
-      steem.api.getContentReplies($scope.parentAuthor, $scope.parentPermlink, function(err, result) {
+      steem.api.getContentReplies('techchat', 'hq-the-popular-mobile-live-trivia-game-gave-away-usd250-000', function(err, result) {
         if (!err) {
           $scope.comments = result.slice(-5);
           $scope.$apply();
+          console.log('getContentReplies: ', result);
         }
       });
     };
-/* old comment function
-    var repeat_list = [];
-    $scope.comment = function() {
-      console.log("repeat_list: ", repeat_list);
-      $scope.loading = true;
-      var permlink = steem.formatter.commentPermlink($scope.parentAuthor, $scope.parentPermlink);
-      sc2.comment($scope.parentAuthor, $scope.parentPermlink, $scope.user.name, permlink, '', $scope.message, '', function(err, result) {
-        console.log(err, result);
-        $scope.content = '';
-        $scope.loading = false;
-        $scope.$apply();
-        $scope.loadComments();
-      });
-    };
-*/
-    var repeat_list = [];
+  
+    console.log('repeat_list: ',repeat_list);
     /* auto comment*/
     $scope.comment= function() {
       $scope.loading= true;
-      console.log("repeat_list: ", repeat_list);
-      steem.api.getDiscussionsByCreated(query, function(err, result) {
-        console.log('getDiscussionsByCreated: ',result);
-        console.log('query Inside getDiscussionsByCreated: ', query);
-        setTimeout(function () {
-          var permlinkSlug = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
-          var discussion = result[i];
-          //console.log(i, discussion);
-          var user_id = discussion.id;
-          var flag = $.inArray(user_id, repeat_list); //check if user_id is already in array
-          if (flag === -1) {
-            repeat_list.push(user_id);
-            console.log("inside inarray",repeat_list);
-            window.permlink = discussion.permlink;
-            window.author = discussion.author;
-            /*
-            console.log(author, 'author');
-            console.log('permlink',permlink);
-            console.log('permlinkSlug',permlinkSlug);
-            console.log('$scope.content', $scope.content);
-            */
-            /* broadcast comment*/
-            sc2.comment(
-              author,//$scope.parentAuthor is what is was before 
-              permlink, //$scope.parentPermlink  21000
-              $scope.user.name, 
-              permlinkSlug, 
-              '',
-              $scope.content,
-              { tags: [tag] },
-              function(err, result) {
-              console.log(err, result);
-              //$scope.content = '';
-              //$scope.loading = false;
+        //commentCheck();
+          /* broadcast comment*/
+          console.log('author in comment(): ',author);
+          console.log('permlink in comment(): ', permlink);
+          sc2.comment(
+            author,//$scope.parentAuthor is what is was before 
+            permlink, //$scope.parentPermlink  21000
+            $scope.user.name, 
+            permlinkSlug, 
+            '',
+            $scope.content,
+            { tags: [tag] },
+            function(err, result) {
+              console.log("comment result: ", result);
               //$scope.$apply();
-              //console.log('tags:', $scope.tags);
+              console.log('<----------------------------comment fired-------------------------------->');
+              
             });
-          }
-          i++;
-          if (i < limit) {
-            $scope.comment();
-          }
-        }, 21000)
-      }); 
-    }
+    }    
+    // after 1 week stop
+    //setTimeout(() => { clearInterval(timerId); alert('stop'); },  604800000);
 
     $scope.vote = function(author, permlink, weight) {
       sc2.vote($scope.user.name, author, permlink, weight, function (err, result) {
@@ -164,13 +210,13 @@ angular.module('app', [])
             $scope.user = result.account;
             $scope.metadata = JSON.stringify(result.user_metadata, null, 2);
             $scope.$apply();
+            window.user = $scope.user;
           }
         } else {
           console.log(err);
         }
       });
     };
-
     $scope.logout = function() {
       sc2.revokeToken(function (err, result) {
         console.log('You successfully logged out', err, result);
