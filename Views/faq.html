@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
-
-  <title>My Profile</title>
-
+  <title>Juicer FAQ's</title>
   <base href="/" />
   <meta charset="UTF-8">
   <meta id="viewport" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
@@ -17,12 +15,14 @@
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_ykgtxz90gjve7b9.css">
 
-  <link rel="stylesheet" type="text/css" href="../Styles/profile.css">
+
+  <link rel="stylesheet" type="text/css" href="../Styles/faq.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
   <script src="/Scripts/sc2.min.js"></script>
   <script src="//cdn.steemjs.com/lib/latest/steem.min.js"></script>
   <script src="/Scripts/app.js"></script>
+
 </head>
 <body>
 
@@ -35,7 +35,7 @@
 </script>
 
 
-<!-- Join waitlist - Universal nav bar -->
+<!-- My Profile - Universal nav bar -->
 <nav class="navbar navbar-expand-md navbar-dark myNav">
   <div class="container-fluid" ng-controller="Main as main">
 
@@ -57,7 +57,7 @@
           <a class="nav-link" href="./Views/buy-votes.html">Buy Votes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./Views/faq.html">FAQ</a>
+          <a class="nav-link" href="#">FAQ</a>
         </li>
       </ul>
     </div>
@@ -96,90 +96,122 @@
 
 
 
-<div class="container-fluid myWidth">
-  <h1>Profile</h1>
-  <div class="profile-header row">
-    <img src="https://img.busy.org/@techchat?s=200" class="img-responsive">
-    <div class="profile-info">
-      <h2>ToTheMoon</h2>
-      <a href="https://steemit.com/@tothemoon" target="_blank">@tothemoon</a>
+
+<div class="faq-container">
+
+  <h1>FAQ</h1>
+
+  <div id="accordion1" class="accordion">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link faqBtn" data-toggle="collapse" data-target="#collapse1">
+            <span>What is Juicer?</span>
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapse1" class="collapse" data-parent="#accordion1">
+        <div class="card-body">
+          Juicer is the best software product you've ever seen.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link faqBtn" data-toggle="collapse" data-target="#collapse5">
+            <span>How do I use Juicer?</span>
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapse5" class="collapse" data-parent="#accordion1">
+        <div class="card-body">
+          Juicer is the best software product you've ever seen.
+        </div>
+      </div>
     </div>
   </div>
 
-  <hr />
-
-  <h2 id="received-header">Received Upvotes</h2>
-  <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col" style="width: 40%">Post</th>
-      <th scope="col" style="width: 20%">Total Value</th>
-      <th scope="col" style="width: 15%">Votes</th>
-      <th scope="col" style="width: 25%">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row">HQ, the popular mobile live-trivia game, gave away $250,000!</td>
-      <td>$83.14</td>
-      <td>7</td>
-      <td>April 5th 2018 - 10:47 pm</td>
-    </tr>
-    <tr>
-      <td scope="row">A hover backpack can now glide you over streets</td>
-      <td>30.30</td>
-      <td>14</td>
-      <td>April 1st 2018 - 2:35 am</td>
-    </tr>
-    <tr>
-      <td scope="row">Ford and Alibaba release a car vending machine</td>
-      <td>33.475</td>
-      <td>4</td>
-      <td>March 27th 2018 - 4:53 pm</td>
-    </tr>
-  </tbody>
-</table>
 
 
 
-<h2 id="sold-header">Sold Upvotes</h2>
-  <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col" style="width: 40%">Post</th>
-      <th scope="col" style="width: 20%">Author</th>
-      <th scope="col" style="width: 15%">Value</th>
-      <th scope="col" style="width: 25%">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row"><a href="https://steemit.com/@johnycrypto/best-free-trading-signals-groups" target="_blank">Best free Trading Signals groups</a></td>
-      <td>johnycrypto</td>
-      <td>0.21</td>
-      <td>April 5th 2018 - 10:47 pm</td>
-    </tr>
-    <tr>
-      <td scope="row"><a href="https://steemit.com/ico/@fr3eze/ico-john-mcafee-tweet-usdusdusd" target="_blank">ICO + John McAfee Tweet = $$$</a></td>
-      <td>fr3eze</td>
-      <td>1.14</td>
-      <td>April 3rd 2018 - 6:47 pm</td>
-    </tr>
-    <tr>
-      <td scope="row"><a href="https://steemit.com/steemit/@tesaganewton/there-is-information-for-the-masses-and-information-for-the-classes-don-t-be-fooled" target="_blank">There is information for the masses and information for the classes, please don't be fooled.</a></td>
-      <td>johnycrypto</td>
-      <td>0.38</td>
-      <td>April 2nd 2018 - 12:27 pm</td>
-    </tr>
-  </tbody>
-</table>
+  <h1>Comment Bot</h1>
+
+  <div id="accordion2" class="accordion">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link faqBtn" data-toggle="collapse" data-target="#collapse2">
+            <span>What is the Juicer Comment Bot?</span>
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapse2" class="collapse" data-parent="#accordion2">
+        <div class="card-body">
+          Juicer is the best software product you've ever seen.
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
+
+  <h1>Sell Votes</h1>
+
+  <div id="accordion3" class="accordion">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link faqBtn" data-toggle="collapse" data-target="#collapse3">
+            <span>What is vote selling on Juicer?</span>
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapse3" class="collapse" data-parent="#accordion3">
+        <div class="card-body">
+          Juicer is the best software product you've ever seen.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <h1>Buy Votes</h1>
+
+  <div id="accordion4" class="accordion">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button class="btn btn-link faqBtn" data-toggle="collapse" data-target="#collapse4">
+            <span>What is vote buying on Juicer?</span>
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapse4" class="collapse" data-parent="#accordion4">
+        <div class="card-body">
+         Juicer is the best software product you've ever seen.
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>
+

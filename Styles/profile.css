@@ -1,0 +1,138 @@
+body {
+  background: white;
+  color: #28292B;
+}
+
+
+
+/* ****** Universal Nav bar ****** */
+.myNav {
+  background-color: #28292B;
+  color: lightgray;
+}
+
+#navbarNav li {
+  margin-right: 20px;
+  min-width: 120px;
+}
+
+#navbarNav a {
+  color: lightgray;
+}
+
+#navbarNav a:hover {
+  color: white;
+}
+
+.joinNavBtn {
+  border: 1px solid #EF8133;
+  background: #28292B;
+  color: lightgray;
+}
+
+.joinNavBtn:hover {
+  border: 1px solid #EF8133;
+  background: #28292B;
+  color: white;
+}
+
+.dropdown {
+  margin-right: 0px;
+  color: lightgray;
+}
+
+.dropdown:hover {
+  color: white;
+  cursor: pointer;
+}
+
+
+.dropdown-menu > a:hover {
+    background-color: white;
+    background-image: none;
+    cursor: pointer;
+    color: gray;
+}
+
+
+/* ****** Body of page ****** */
+
+
+.myWidth {
+  max-width: 700px;
+  /*border: 1px solid black;*/
+}
+
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+  text-decoration: underline;
+ text-decoration-color: #EF8133;
+ text-decoration-style: solid;
+ -webkit-text-decoration: underline;
+ -webkit-text-decoration-color: #EF8133;
+ -webkit-text-decoration-style: solid;
+}
+
+.profile-header {
+  /*border: 1px solid black;*/
+  max-width: 300px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.profile-info {
+  padding-left: 15px;
+}
+
+
+
+
+
+h2:first-child {
+  text-align: center;
+}
+
+#received-header {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+#sold-header {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+
+/*h2:nth-child(2) {
+  text-align: center;
+  margin-bottom: 25px;
+  margin-top: 100px;
+}
+*/
+
+
+table {
+  border: 1px solid lightgray;
+}
+
+thead {
+  background-color: #28292B;
+  color: lightgray;
+}
+
+
+/*td {
+  padding-left: 100px;
+  padding-right: 30px;
+}*/

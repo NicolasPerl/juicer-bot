@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
-
-  <title>My Profile</title>
+  
+  <title>Sell Votes</title>
 
   <base href="/" />
   <meta charset="UTF-8">
@@ -17,14 +17,16 @@
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_ykgtxz90gjve7b9.css">
 
-  <link rel="stylesheet" type="text/css" href="../Styles/profile.css">
+  <link rel="stylesheet" type="text/css" href="../Styles/sell-votes.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
   <script src="/Scripts/sc2.min.js"></script>
   <script src="//cdn.steemjs.com/lib/latest/steem.min.js"></script>
   <script src="/Scripts/app.js"></script>
+
 </head>
 <body>
+
 
 <script>
 
@@ -51,7 +53,7 @@
           <a class="nav-link" href="./Views/comments.html">Comment Bot</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./Views/sell-votes.html">Sell Votes</a>
+          <a class="nav-link" href="#">Sell Votes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./Views/buy-votes.html">Buy Votes</a>
@@ -96,90 +98,71 @@
 
 
 
-<div class="container-fluid myWidth">
-  <h1>Profile</h1>
-  <div class="profile-header row">
-    <img src="https://img.busy.org/@techchat?s=200" class="img-responsive">
-    <div class="profile-info">
-      <h2>ToTheMoon</h2>
-      <a href="https://steemit.com/@tothemoon" target="_blank">@tothemoon</a>
-    </div>
+<div class="container-fluid">
+
+  <h1 class="header">Sell Votes</h1>
+
+  <div class="description">
+    <p>Describe that users can sell their upvotes and earn passive income</p>
+    <hr />
   </div>
 
-  <hr />
-
-  <h2 id="received-header">Received Upvotes</h2>
-  <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col" style="width: 40%">Post</th>
-      <th scope="col" style="width: 20%">Total Value</th>
-      <th scope="col" style="width: 15%">Votes</th>
-      <th scope="col" style="width: 25%">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row">HQ, the popular mobile live-trivia game, gave away $250,000!</td>
-      <td>$83.14</td>
-      <td>7</td>
-      <td>April 5th 2018 - 10:47 pm</td>
-    </tr>
-    <tr>
-      <td scope="row">A hover backpack can now glide you over streets</td>
-      <td>30.30</td>
-      <td>14</td>
-      <td>April 1st 2018 - 2:35 am</td>
-    </tr>
-    <tr>
-      <td scope="row">Ford and Alibaba release a car vending machine</td>
-      <td>33.475</td>
-      <td>4</td>
-      <td>March 27th 2018 - 4:53 pm</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="settings row">
+    <h4 class="vote-selling-label">Sell your vote:</h4>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="sliderToggle round"></span>
+      </label>
+  </div>
 
 
 
-<h2 id="sold-header">Sold Upvotes</h2>
-  <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col" style="width: 40%">Post</th>
-      <th scope="col" style="width: 20%">Author</th>
-      <th scope="col" style="width: 15%">Value</th>
-      <th scope="col" style="width: 25%">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row"><a href="https://steemit.com/@johnycrypto/best-free-trading-signals-groups" target="_blank">Best free Trading Signals groups</a></td>
-      <td>johnycrypto</td>
-      <td>0.21</td>
-      <td>April 5th 2018 - 10:47 pm</td>
-    </tr>
-    <tr>
-      <td scope="row"><a href="https://steemit.com/ico/@fr3eze/ico-john-mcafee-tweet-usdusdusd" target="_blank">ICO + John McAfee Tweet = $$$</a></td>
-      <td>fr3eze</td>
-      <td>1.14</td>
-      <td>April 3rd 2018 - 6:47 pm</td>
-    </tr>
-    <tr>
-      <td scope="row"><a href="https://steemit.com/steemit/@tesaganewton/there-is-information-for-the-masses-and-information-for-the-classes-don-t-be-fooled" target="_blank">There is information for the masses and information for the classes, please don't be fooled.</a></td>
-      <td>johnycrypto</td>
-      <td>0.38</td>
-      <td>April 2nd 2018 - 12:27 pm</td>
-    </tr>
-  </tbody>
-</table>
+  
+  <form class="sell-form">
+    <div class="vote-power-threshold">
+      <div class="row">
+        <div class="col-sm-8">
+          <h4>Voting Power Threshold</h4>
+          <i><p>Vote only if your voting power is higher than:</p></i>
+        </div>
+        <div class="col-sm-4">
+          <h2 id="vote-power-text">0 <span>%</span></h2>
+        </div>
+      </div>
+      <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="80" class="slider" id="myRange">
+      </div>
+    </div>
 
+    <span class="input-group-btn">
+      <div class="text-center"> 
+        <button class="btn submitBtn" type="submit" id="submitBtn">Save</button>
+      </div> 
+    </span>
+
+  </form>
 
 
 </div>
 
+<script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("vote-power-text");  
+    console.log(slider)
+
+    output.innerHTML = slider.value + " %";
+    
+
+    slider.oninput = function() {
+      output.innerHTML = this.value + " %";
+    } 
+</script>
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>
+
