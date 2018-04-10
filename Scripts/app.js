@@ -23,13 +23,15 @@ angular.module('app', [])
     var i = 0
     var j = 0
     var repeat_list = [];
-    //window.author = '';
+    var startTime = new Date().getTime();
     
     var commentGate = true;
 
     startInterval = function () {
-      var myVar = setInterval(function(){  fetchPosts() }, 66000);//22000
-
+      if (new Date().getTime() - startTime < 172800000) {//2 days
+        console.log('inside startInterval() if statement: !!!!!!!!!!!!!!!!!!!!!!!!!')
+        var myVar = setInterval(function(){  fetchPosts() }, 300000);//22000   604800000 1 week
+      }
     }
     
 
@@ -91,10 +93,14 @@ angular.module('app', [])
             }
             console.log('interval has been called: ', user_id);
             i++;
+            if (i == stopAfter) {
+              console.log("startInterval has been called !!!!!!!!!!!!!!!----------------");
+              
+            }
             if (i < stopAfter) {
               inside();
             }
-          }, 23000)
+          }, 25000)
         }
         inside();
       });
@@ -108,22 +114,18 @@ angular.module('app', [])
           var user = $scope.user.name;
           $scope.$apply();
           console.log('inside getContentReplies--------------------------------');
-          console.log('j: ',j);
+          
           console.log('result in comment check: ',result);        
           var checkID = result[j];
-          console.log("checkID outside: ", checkID);
+          
           if (checkID != null) {            
 
             console.log("result.length: ",);
             for (j = 0; j < result.length; j++) { 
                 checkID = result[j];
                 console.log("checkID inside for: ", checkID);
-                console.log("inside checkID/for loop");
                 console.log('j inside for loop: ',j);
-                //console.log(j,checkID[0]);
                 var replyAuthor = checkID.author;//.id
-                console.log('replyAuthor: ', replyAuthor);
-                console.log('user: ',user);
                 //if replyAuthor matches with $user change commentGate() flag
                 if (replyAuthor == user) {
                   commentGate = false;
