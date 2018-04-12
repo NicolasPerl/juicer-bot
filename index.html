@@ -6,8 +6,7 @@
   <meta charset="UTF-8">
   <meta id="viewport" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
@@ -15,24 +14,19 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_ykgtxz90gjve7b9.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
   <script src="/Scripts/sc2.min.js"></script>
   <!--<script src="/Scripts/sc2.js"></script>-->
   <script src="//cdn.steemjs.com/lib/latest/steem.min.js"></script>
   <script src="/Scripts/app.js"></script>
   <link rel="stylesheet" type="text/css" href="/Styles/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 </head>
 
 <body>
 
 <script>
-//Run the function--
-//------------------
-//myLoopSS();
-//myLoopMB();
-//loopComment();
-
-//setInterval(fire(),21000);
-//------------------
 
 
     $(document).ready(function () {
@@ -44,7 +38,7 @@
 
 <!--  Universal nav bar -->
 <nav class="navbar navbar-expand-md navbar-dark myNav">
-  <div class="container-fluid" ng-controller="Main as main">
+  <div class="container-fluid" ng-controller="Main" >
 
     <!-- logo -->
     <a class="navbar-logo" href="index.html">
