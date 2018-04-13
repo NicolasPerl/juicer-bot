@@ -8,87 +8,15 @@ sc2.init({
 });
 
 
-// ********** Trying to figure out routing below - excuse my shit ***********
 
-// angular.module('app', ['ngRoute'])
-//   .config(function($locationProvider, $routeProvider){
-//     $locationProvider.html5Mode(true);
-//     $routeProvider
-//     .when('/', {
-//       templateUrl: '/index.html' //index.html' , controller: 'home'
-//     })
-//     .when('/Views/comments.html', {
-//       templateUrl: '/Views/comments.html'//, controller: 'home'
-//     })
-//     .when('/Views/sell-votes.html', {
-//       templateUrl: '/Views/sell-votes.html'//, controller: 'home'
-//     })
-//     .when('/Views/faq.html', {
-//       templateUrl: '/Views/faq.html'//, controller: 'home'
-//     })
-//     .when('/Views/profile.html', {
-//       templateUrl: '/Views/profile.html'//, controller: 'home'
-//     })
-//     .otherwise({ redirectTo: '/' });
-//   })
+var juicer = angular.module('app', []);
 
-// angular.module('app', ['ngRoute'])
-//   .config(function($routeProvider){
-//     $routeProvider
-//     .when('/', {
-//       templateUrl: '/index.html' //index.html' , controller: 'home'
-//     })
-//     .when('/Views/comments.html', {
-//       templateUrl: '/Views/comments.html'//, controller: 'home'
-//     })
-//     .when('/Views/sell-votes.html', {
-//       templateUrl: '/Views/sell-votes.html'//, controller: 'home'
-//     })
-//     .when('/Views/faq.html', {
-//       templateUrl: '/Views/faq.html'//, controller: 'home'
-//     })
-//     .when('/Views/profile.html', {
-//       templateUrl: '/Views/profile.html'//, controller: 'home'
-//     })
-//     .otherwise({ redirectTo: '/' });
-//   })
-
-
-// app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider){
-//     $locationProvider.html5Mode(true);
-
-//     $routeProvider
-//     .when('/', {
-//       templateUrl: '/index.html' //index.html' , controller: 'home'
-//     })
-//     .when('/Views/comments.html', {
-//       templateUrl: '/Views/comments.html'//, controller: 'home'
-//     })
-//     .when('/Views/sell-votes.html', {
-//       templateUrl: '/Views/sell-votes.html'//, controller: 'home'
-//     })
-//     .when('/Views/faq.html', {
-//       templateUrl: '/Views/faq.html'//, controller: 'home'
-//     })
-//     .when('/Views/profile.html', {
-//       templateUrl: '/Views/profile.html'//, controller: 'home'
-//     })
-//     .when('https://v2.steemconnect.com/oauth2/authorize?client_id=juicer.app&redirect_uri=http%3A%2F%2F127.0.0.1%3A8080%2FViews%2Fcomments.html&scope=vote,comment', {
-//       templateUrl: '/Views/comments.html'
-//     })
-//   }]);
-
-// app.config(['$locationProvider', function($locationProvider){
-//     $locationProvider.html5Mode(true);
-//   }])
-
-var app = angular.module('app', []);
-
-  app.config(['$locationProvider', function($locationProvider){
+  juicer.config(['$locationProvider', function($locationProvider){
     $locationProvider.html5Mode(true);
   }])
 
-  app.controller('Main', function($scope, $location, $http) {
+
+  juicer.controller('Main', function($scope, $location, $http) {
     $scope.loading = false;
     $scope.parentAuthor = 'siol';
     $scope.parentPermlink = '5vdmjq-test';
