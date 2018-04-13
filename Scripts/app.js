@@ -7,17 +7,123 @@ sc2.init({
   scope: ['vote', 'comment']
 });
 
-angular.module('app', [])
-  .config(['$locationProvider', function($locationProvider){
+
+// ********** Trying to figure out routing below - excuse my shit ***********
+
+// angular.module('app', ['ngRoute'])
+//   .config(function($locationProvider, $routeProvider){
+//     $locationProvider.html5Mode(true);
+//     $routeProvider
+//     .when('/', {
+//       templateUrl: '/index.html' //index.html' , controller: 'home'
+//     })
+//     .when('/Views/comments.html', {
+//       templateUrl: '/Views/comments.html'//, controller: 'home'
+//     })
+//     .when('/Views/sell-votes.html', {
+//       templateUrl: '/Views/sell-votes.html'//, controller: 'home'
+//     })
+//     .when('/Views/faq.html', {
+//       templateUrl: '/Views/faq.html'//, controller: 'home'
+//     })
+//     .when('/Views/profile.html', {
+//       templateUrl: '/Views/profile.html'//, controller: 'home'
+//     })
+//     .otherwise({ redirectTo: '/' });
+//   })
+
+// angular.module('app', ['ngRoute'])
+//   .config(function($routeProvider){
+//     $routeProvider
+//     .when('/', {
+//       templateUrl: '/index.html' //index.html' , controller: 'home'
+//     })
+//     .when('/Views/comments.html', {
+//       templateUrl: '/Views/comments.html'//, controller: 'home'
+//     })
+//     .when('/Views/sell-votes.html', {
+//       templateUrl: '/Views/sell-votes.html'//, controller: 'home'
+//     })
+//     .when('/Views/faq.html', {
+//       templateUrl: '/Views/faq.html'//, controller: 'home'
+//     })
+//     .when('/Views/profile.html', {
+//       templateUrl: '/Views/profile.html'//, controller: 'home'
+//     })
+//     .otherwise({ redirectTo: '/' });
+//   })
+
+
+// app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider){
+//     $locationProvider.html5Mode(true);
+
+//     $routeProvider
+//     .when('/', {
+//       templateUrl: '/index.html' //index.html' , controller: 'home'
+//     })
+//     .when('/Views/comments.html', {
+//       templateUrl: '/Views/comments.html'//, controller: 'home'
+//     })
+//     .when('/Views/sell-votes.html', {
+//       templateUrl: '/Views/sell-votes.html'//, controller: 'home'
+//     })
+//     .when('/Views/faq.html', {
+//       templateUrl: '/Views/faq.html'//, controller: 'home'
+//     })
+//     .when('/Views/profile.html', {
+//       templateUrl: '/Views/profile.html'//, controller: 'home'
+//     })
+//     .when('https://v2.steemconnect.com/oauth2/authorize?client_id=juicer.app&redirect_uri=http%3A%2F%2F127.0.0.1%3A8080%2FViews%2Fcomments.html&scope=vote,comment', {
+//       templateUrl: '/Views/comments.html'
+//     })
+//   }]);
+
+// app.config(['$locationProvider', function($locationProvider){
+//     $locationProvider.html5Mode(true);
+//   }])
+
+var app = angular.module('app', []);
+
+  app.config(['$locationProvider', function($locationProvider){
     $locationProvider.html5Mode(true);
   }])
-  .controller('Main', function($scope, $location, $http) {
+
+  app.controller('Main', function($scope, $location, $http) {
     $scope.loading = false;
     $scope.parentAuthor = 'siol';
     $scope.parentPermlink = '5vdmjq-test';
     $scope.accessToken = $location.search().access_token;
     $scope.expiresIn = $location.search().expires_in;
     $scope.loginURL = sc2.getLoginURL();
+
+    if ($scope.accessToken) {
+      document.cookie = "accessToken=" + $scope.accessToken + "; max-age=2592000 ; path=/"; // 1 month
+    } else {
+      setAccessToken();
+    }
+    
+    if ($scope.accessToken) {
+      sc2.setAccessToken($scope.accessToken);
+      sc2.me(function (err, result) {
+        console.log('/me', err, result);
+        if (!err) {
+          $scope.user = result.account;
+          $scope.metadata = JSON.stringify(result.user_metadata, null, 2);
+          $scope.$apply();
+        }
+      });
+    }
+
+    function setAccessToken() {
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var cookieArray = decodedCookie.split("=");
+        if (cookieArray[0] == "accessToken")
+        {
+          console.log("Access Token: " + cookieArray[1]);
+          var theAccessToken = cookieArray[1];
+          $scope.accessToken = theAccessToken;
+        }
+    }
 
     //set the counter 
     var i = 0
@@ -139,18 +245,19 @@ angular.module('app', [])
   }
 
 
-    if ($scope.accessToken) {
-      sc2.setAccessToken($scope.accessToken);
-      sc2.me(function (err, result) {
-        console.log('/me', err, result);
-        if (!err) {
-          $scope.user = result.account;
-          $scope.metadata = JSON.stringify(result.user_metadata, null, 2);
-          $scope.$apply();
+    // if ($scope.accessToken) {
+    //   sc2.setAccessToken($scope.accessToken);
+    //   console.log("Made it in the loop");
+    //   sc2.me(function (err, result) {
+    //     console.log('/me', err, result);
+    //     if (!err) {
+    //       $scope.user = result.account;
+    //       $scope.metadata = JSON.stringify(result.user_metadata, null, 2);
+    //       $scope.$apply();
           
-        }
-      });
-    }
+    //     }
+    //   });
+    // }
 
     $scope.isAuth = function() {
       return !!$scope.user;
