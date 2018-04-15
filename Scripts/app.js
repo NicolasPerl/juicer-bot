@@ -3,7 +3,7 @@
 
 sc2.init({
   app: 'juicer.app',
-  callbackURL: 'http://127.0.0.1:8080/Views/comments.html',
+  callbackURL: 'http://127.0.0.1:8080/index.html',
   scope: ['vote', 'comment']
 });
 
@@ -15,7 +15,29 @@ var juicer = angular.module('app', []);
     $locationProvider.html5Mode(true);
   }])
 
+  // comments controller
+  juicer.controller('commentsC', function($scope, $location, $http) {
+    //$scope.commentContent = "testing";
+  });
 
+  // buy votes controller
+  juicer.controller('buyVotesC', function($scope, $location, $http) {
+    // $scope.postLink = "testing";
+    // $scope.accountName = "testing";
+    // $scope.sendAmount = 2.1;
+  });
+
+  // sell votes controller
+  juicer.controller('sellVotesC', function($scope, $location, $http) {
+    
+  });
+
+  // profile controller
+  juicer.controller('profileC', function($scope, $location, $http) {
+    
+  });
+
+  // main controller
   juicer.controller('Main', function($scope, $location, $http) {
     $scope.loading = false;
     $scope.parentAuthor = 'siol';
@@ -23,6 +45,7 @@ var juicer = angular.module('app', []);
     $scope.accessToken = $location.search().access_token;
     $scope.expiresIn = $location.search().expires_in;
     $scope.loginURL = sc2.getLoginURL();
+
 
     if ($scope.accessToken) {
       document.cookie = "accessToken=" + $scope.accessToken + "; max-age=2592000 ; path=/"; // 1 month
@@ -38,9 +61,11 @@ var juicer = angular.module('app', []);
           $scope.user = result.account;
           $scope.metadata = JSON.stringify(result.user_metadata, null, 2);
           $scope.$apply();
+
         }
       });
     }
+
 
     function setAccessToken() {
         var decodedCookie = decodeURIComponent(document.cookie);
@@ -190,6 +215,10 @@ var juicer = angular.module('app', []);
     $scope.isAuth = function() {
       return !!$scope.user;
     };
+
+    $scope.isNotAuth = function() {
+      return !$scope.user;
+    }
 
     $scope.loadComments = function() {
       steem.api.getContentReplies('techchat', 'hq-the-popular-mobile-live-trivia-game-gave-away-usd250-000', function(err, result) {

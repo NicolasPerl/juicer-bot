@@ -88,3 +88,13 @@ h1 {
   text-decoration: none;
   text-align: center;
 }
+
+footer {
+  background: #28292B;
+  color: white;
+  height: 50px;
+}
+
+footer a {
+  color: #EF8133;
+}

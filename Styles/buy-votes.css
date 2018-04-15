@@ -211,3 +211,13 @@ select {
   background-color: #e0e8eb;
   color: black;
 }
+
+footer {
+  background: #28292B;
+  color: white;
+  height: 50px;
+}
+
+footer a {
+  color: #EF8133;
+}
