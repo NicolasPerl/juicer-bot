@@ -98,7 +98,7 @@ $(document).ready(function () {
 
 
 
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="buyVotesC">
   
   <h1 class="header">Buy Votes</h1>
 
@@ -129,7 +129,7 @@ $(document).ready(function () {
         <div class="col-sm-8">
           <legend><span class="number">1</span> Post link </legend>
           <div class="error">
-            <input type="text" name="post-link" id="post-link" class="form-control" placeholder="https://steemit.com/..." required>
+            <input type="text" name="post-link" id="post-link" ng-model="postLink" class="form-control" placeholder="https://steemit.com/..." required>
             <span class="error-message" id="linkSpan"></span>
           </div>
         </div>
@@ -152,7 +152,7 @@ $(document).ready(function () {
         <div class="pay">
           <label>Account name:</label><br>
           <div class="error">
-            <input type="text" name="account-name" id="name" class="form-control" required>
+            <input type="text" name="account-name" id="name" ng-model="accountName" class="form-control" required>
             <span class="error-message" id="nameSpan"></span>
           </div>
           <br>
@@ -161,7 +161,7 @@ $(document).ready(function () {
             <div class="col-sm-4">
               <label>Send amount:</label></br>
               <div class="error">
-                <input type="number" name="send-amount" id="amount" placeholder="1.000" required>
+                <input type="number" name="send-amount" id="amount" ng-model="sendAmount" placeholder="1.000" required>
                 <span class="error-message" id="amountSpan"></span>
               </div>
             </div>
@@ -199,6 +199,13 @@ $(document).ready(function () {
   </div>
 
 </div>
+
+<footer class="fixed-bottom">
+  <div class="container-fluid">
+    <p>Contact us on<a href="#"> Discord</a></p>
+  </div>
+</footer>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
