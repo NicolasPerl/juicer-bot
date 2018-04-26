@@ -9,6 +9,7 @@
     "@angular/material": "^5.2.4",
     "angular": "^1.6.9",
     "angular-core": "0.0.5",
+    "hapi": "^17.3.1",
     "live-server": "^1.2.0",
     "package.json": "^2.0.1",
     "steem": "^0.7.1",
