@@ -74,7 +74,7 @@ var juicer = angular.module('app', []);
         //itertate through result 
         function inside() {
           setTimeout(function () {
-            console.log('---------------inside set timeout: --------------');
+            //console.log('---------------inside set timeout: --------------');
             window.permlinkSlug = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
             window.discussion = result[i];
             console.log(i, discussion);
@@ -92,7 +92,7 @@ var juicer = angular.module('app', []);
             }
             i++;
             if (i == stopAfter) {
-              console.log("startInterval has been called !!!!!!!!!!!!!!!----------------");
+              //console.log("startInterval has been called !!!!!!!!!!!!!!!----------------");
             }
             if (i < stopAfter) {
               inside();
@@ -110,31 +110,31 @@ var juicer = angular.module('app', []);
           j = 0
           var user = $scope.user.name;
           $scope.$apply();
-          console.log('inside api.getContentReplies()--------------------------------');
-          console.log('result in commentCheck(): ',result);        
+          //console.log('inside api.getContentReplies()--------------------------------');
+          //console.log('result in commentCheck(): ',result);        
           var checkID = result[j];
           if (checkID != null) {            
-            console.log("result.length: ",);
+            //console.log("result.length: ",);
             for (j = 0; j < result.length; j++) { 
                 checkID = result[j];
-                console.log('j inside for loop: ',j);
+                //console.log('j inside for loop: ',j);
                 var replyAuthor = checkID.author;//.id
                 //if replyAuthor matches with $user change commentGate flag
                 if (replyAuthor == user) {
                   commentGate = false;
-                  console.log('if replyAuthor == user:----------------------- commentGate switched',);
+                  //console.log('if replyAuthor == user:----------------------- commentGate switched',);
                 }
             }
-            console.log('author in commentcheck: ', author);
-            console.log('user in commentcheck: ', user);
+            //console.log('author in commentcheck: ', author);
+            //console.log('user in commentcheck: ', user);
 
             if (author==user) {
-              console.log('inside if author==user');
+              //console.log('inside if author==user');
               commentGate = false;
             }
           }
           if (commentGate) {
-            console.log('inside commentGate: ');
+            //console.log('inside commentGate: ');
             $scope.comment();
           }
         }
@@ -152,7 +152,7 @@ var juicer = angular.module('app', []);
           console.log('permlink in comment(): ', permlink);
           console.log('permlinkSlug in comment(): ', permlinkSlug);
           console.log('$scope.user.name: ',$scope.user.name);*/
-          console.log('$scope.content: ', contentFinal);
+          //console.log('$scope.content: ', contentFinal);
           sc2.comment(
             author,//$scope.parentAuthor is what is was before 
             permlink, //$scope.parentPermlink  21000
