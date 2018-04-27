@@ -3,8 +3,8 @@
 const Hapi = require('hapi');
 
 const server = Hapi.server({
-    port: 3000,
-    host: 'localhost'
+    port: 8080, //3000
+    host: '127.0.0.1' //localhost
 });
 
 server.route({
@@ -12,10 +12,13 @@ server.route({
     path: '/',
     handler: (request, h) => {
 
-        return 'Hello, world!';
+        const query = request.query
+        console.log('query: ', query);
+
+        return ('HEck yea');
     }
 });
-
+/*
 server.route({
     method: 'GET',
     path: '/{name}',
@@ -25,6 +28,26 @@ server.route({
     }
 });
 
+server.route({
+    method: 'GET',
+    path: '/{p*}',
+    handler: (request, h) => {
+        reply.file('/index.html');
+    }
+});
+*/
+
+await server.register(require('inert'));
+
+    server.route({
+        method: 'GET',
+        path: '/picture.jpg',
+        handler: function (request, h) {
+
+            return h.file('/path/to/picture.jpg');
+        }
+    });
+    
 const init = async () => {
 
     await server.start();
@@ -37,4 +60,4 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
 });
 
-init();
+init(); 
