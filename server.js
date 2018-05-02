@@ -6,7 +6,7 @@ const server = Hapi.server({
     port: 8080, //3000
     host: '127.0.0.1' //localhost
 });
-
+/*
 server.route({
     method: 'GET',
     path: '/',
@@ -18,7 +18,7 @@ server.route({
         return ('HEck yea');
     }
 });
-/*
+
 server.route({
     method: 'GET',
     path: '/{name}',
@@ -37,18 +37,59 @@ server.route({
 });
 */
 
-await server.register(require('inert'));
 
-    server.route({
-        method: 'GET',
-        path: '/picture.jpg',
-        handler: function (request, h) {
-
-            return h.file('/path/to/picture.jpg');
-        }
-    });
+    
     
 const init = async () => {
+    await server.register(require('inert'));
+
+    server.route ({
+        method: 'GET',
+        path: '/',
+        handler: (request, h) => {
+            //return h.file('./Views/comments.html');
+            return h.file('index.html');
+        }
+    });
+
+    server.route ({
+        method: 'GET',
+        path: '/comments',
+        handler: (request, h) => {
+            //return h.file('./Views/comments.html');
+            return h.file('./Views/comments.html');
+        }
+    });
+
+    server.route({  
+        method: 'GET',
+        path: '/Styles/{file*}',
+        handler: {
+            directory: { 
+                path: './Styles'
+            }
+        }
+    })
+
+    server.route({  
+        method: 'GET',
+        path: '/media/{file*}',
+        handler: {
+            directory: { 
+                path: './media'
+            }
+        }
+    })
+
+    server.route({  
+        method: 'GET',
+        path: '/Scripts/{file*}',
+        handler: {
+            directory: { 
+                path: './Scripts'
+            }
+        }
+    })
 
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
