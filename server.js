@@ -1,66 +1,32 @@
 'use strict';
 
 const Hapi = require('hapi');
-
+//construct server instance
 const server = Hapi.server({
     port: 8080, //3000
     host: '127.0.0.1' //localhost
 });
-/*
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: (request, h) => {
 
-        const query = request.query
-        console.log('query: ', query);
-
-        return ('HEck yea');
-    }
-});
-
-server.route({
-    method: 'GET',
-    path: '/{name}',
-    handler: (request, h) => {
-
-        return 'Hello, ' + encodeURIComponent(request.params.name) + '!';
-    }
-});
-
-server.route({
-    method: 'GET',
-    path: '/{p*}',
-    handler: (request, h) => {
-        reply.file('/index.html');
-    }
-});
-*/
-
-
-    
-    
-const init = async () => {
+const blastoff = async () => {
+    //middleware
     await server.register(require('inert'));
-
     server.route ({
         method: 'GET',
         path: '/',
         handler: (request, h) => {
-            //return h.file('./Views/comments.html');
             return h.file('index.html');
         }
-    });
-
+    })
+    // render the views
     server.route ({
-        method: 'GET',
-        path: '/comments',
-        handler: (request, h) => {
-            //return h.file('./Views/comments.html');
-            return h.file('./Views/comments.html');
-        }
-    });
+            method: 'GET',
+            path: '/{view}',
+            handler: (request, h) => {
+                return h.file('./Views/'+encodeURIComponent(request.params.view)+".html")
+            }
+        });
 
+    // config styles
     server.route({  
         method: 'GET',
         path: '/Styles/{file*}',
@@ -70,7 +36,7 @@ const init = async () => {
             }
         }
     })
-
+    //config media
     server.route({  
         method: 'GET',
         path: '/media/{file*}',
@@ -80,7 +46,7 @@ const init = async () => {
             }
         }
     })
-
+    //config scripts
     server.route({  
         method: 'GET',
         path: '/Scripts/{file*}',
@@ -101,4 +67,4 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
 });
 
-init(); 
+blastoff(); 
