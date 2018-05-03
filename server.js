@@ -22,17 +22,17 @@ const blastoff = async () => {
             method: 'GET',
             path: '/{view}',
             handler: (request, h) => {
-                return h.file('./Views/'+encodeURIComponent(request.params.view)+".html")
+                return h.file('./views/'+encodeURIComponent(request.params.view)+".html")
             }
         });
 
     // config styles
     server.route({  
         method: 'GET',
-        path: '/Styles/{file*}',
+        path: '/styles/{file*}',
         handler: {
             directory: { 
-                path: './Styles'
+                path: './styles'
             }
         }
     })
@@ -49,10 +49,10 @@ const blastoff = async () => {
     //config scripts
     server.route({  
         method: 'GET',
-        path: '/Scripts/{file*}',
+        path: '/scripts/{file*}',
         handler: {
             directory: { 
-                path: './Scripts'
+                path: './scripts'
             }
         }
     })
