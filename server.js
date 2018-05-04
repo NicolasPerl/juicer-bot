@@ -1,6 +1,8 @@
 'use strict';
-
+var controller = require("./server/controllers/comment_controller");
 const Hapi = require('hapi');
+
+
 //construct server instance
 const server = Hapi.server({
     port: 8080, //3000
@@ -57,6 +59,34 @@ const blastoff = async () => {
         }
     })
 
+
+    //New AJAX request code
+    server.route({  
+        method: 'POST',
+        path: '/api/{payload}',
+        handler: function(request,h) {
+            console.log('request: -----',request);
+            var payloadData = parseInt(request.query.param);
+            //var added = payloadData + 1; 
+            console.log('payloadData route: ', payloadData);
+            // controller.registerLimit(payloadData, function (err, data) {
+            //     if (err) {
+            //         console.log("thi sis a");
+            //         throw err
+            //     } else {
+            //         console.log("success: ", data);
+            //         return h.response(data);
+            //     }
+            //     return h.response(data);
+               
+            // });
+            return h.response(payloadData);
+
+        }
+    })
+//.config.params.param
+
+//////////////////////////////////////////////////////////////////
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
 };

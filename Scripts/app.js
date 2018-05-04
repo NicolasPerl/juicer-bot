@@ -3,7 +3,7 @@
 
 sc2.init({
   app: 'juicer.app',
-  callbackURL: 'http://127.0.0.1:8080/index.html',
+  callbackURL: 'http://127.0.0.1:8080',
   scope: ['vote', 'comment']
 });
 
@@ -37,6 +37,20 @@ var juicer = angular.module('app', []);
     $scope.getVal=function(){
       $scope.limit = $scope.limit_model;
       window.limit = $scope.limit
+      // Simple GET request example:
+      var limitPack = {param:limit}
+      $http({
+        url: "/api/payload",
+        method: "POST",
+        params: limitPack
+      }).then(function successCallback(response) {
+        console.log('response.data: ', response.data);
+        $scope.payloadDataA = response.data;
+        console.log('payloadData---: ',$scope.payloadDataA)
+      }, function errorCallback(response) {
+      console.log('an error occured');
+      console.log(response);
+      });
     }
 /*
     $scope.getTag=function() {
