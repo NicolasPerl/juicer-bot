@@ -65,26 +65,26 @@ const blastoff = async () => {
         method: 'POST',
         path: '/api/{payload}',
         handler: function(request,h) {
-            console.log('request: -----',request);
+            //console.log('request: -----',request);
             var payloadData = parseInt(request.query.param);
-            //var added = payloadData + 1; 
             console.log('payloadData route: ', payloadData);
-            // controller.registerLimit(payloadData, function (err, data) {
-            //     if (err) {
-            //         console.log("thi sis a");
-            //         throw err
-            //     } else {
-            //         console.log("success: ", data);
-            //         return h.response(data);
-            //     }
-            //     return h.response(data);
+            controller.registerLimit(payloadData, function (err, data) {
+                if (err) {
+                    console.log("thi sis a: ", data);
+                    throw err
+                } else {
+                    console.log("success: ", data);
+                    h.response(data);
+                }
+                //return h.response(data);
                
-            // });
-            return h.response(payloadData);
+            });
+            //return h.response(payloadData);
+            //return h.response(data);
 
         }
     })
-//.config.params.param
+
 
 //////////////////////////////////////////////////////////////////
     await server.start();
