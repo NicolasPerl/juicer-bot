@@ -74,13 +74,12 @@ const blastoff = async () => {
                     throw err
                 } else {
                     console.log("success: ", data);
-                    h.response(data);
+                    return this;
+
                 }
-                //return h.response(data);
-               
             });
-            //return h.response(payloadData);
-            //return h.response(data);
+            return this;
+            
 
         }
     })

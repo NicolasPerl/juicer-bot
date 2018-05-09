@@ -44,9 +44,8 @@ var juicer = angular.module('app', []);
         method: "POST",
         params: limitPack
       }).then(function successCallback(response) {
-        console.log('response.data: ', response.data);
-        $scope.payloadDataA = response.data;
-        console.log('payloadData---: ',$scope.payloadDataA)
+        console.log('response.data: ', response);
+        console.log('---------payloadData on client---------: ',response.config.params.param);
       }, function errorCallback(response) {
       console.log('an error occured');
       console.log(response);
