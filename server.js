@@ -1,13 +1,21 @@
 'use strict';
 var controller = require("./server/controllers/comment_controller");
 const Hapi = require('hapi');
+var Joi = require('joi');
+//var sc2 = require('sc2-sdk');
 
 
 //construct server instance
 const server = Hapi.server({
-    port: 8080, //3000
-    host: '127.0.0.1' //localhost
+    port: 3000, //8080
+    host: 'localhost' //127.0.0.1
 });
+
+// sc2.init({
+//   app: 'juicer.app',
+//   callbackURL: 'http://127.0.0.1:8080',
+//   scope: ['vote', 'comment']
+// });
 
 const blastoff = async () => {
     //middleware
@@ -70,7 +78,7 @@ const blastoff = async () => {
             console.log('payloadData route: ', payloadData);
             controller.registerLimit(payloadData, function (err, data) {
                 if (err) {
-                    console.log("thi sis a: ", data);
+                    console.log("this is data object: ", data);
                     throw err
                 } else {
                     console.log("success: ", data);
@@ -79,8 +87,30 @@ const blastoff = async () => {
                 }
             });
             return this;
-            
+        },
+        options: {
+            validate: {
+                query: {
+                    param: Joi.number().integer()
+                }
+            }
+        }
+    })
 
+    server.route({
+        method: 'POST',
+        path: '/api/fire/{submit}',
+        handler: function(request,h) {
+
+
+
+            console.log('request---------------: ',request);
+            var payloadData = request.query;
+            var limit = parseInt(payloadData.limit);
+            console.log('payloadData route: ', limit);
+            steem.api.getAccounts(['ned', 'dan'], function(err, result) {
+                console.log(err, result);
+            });
         }
     })
 
